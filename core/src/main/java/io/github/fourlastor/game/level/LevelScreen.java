@@ -1,6 +1,7 @@
 package io.github.fourlastor.game.level;
 
 import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import javax.inject.Inject;
@@ -30,7 +31,12 @@ public class LevelScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        engine.addEntity(entitiesFactory.board());
+        for (Entity entity : entitiesFactory.board()) {
+            engine.addEntity(entity);
+        }
+        for (Entity entity : entitiesFactory.pieces()) {
+            engine.addEntity(entity);
+        }
     }
 
     @Override

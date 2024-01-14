@@ -10,6 +10,8 @@ import dagger.Module;
 import dagger.Provides;
 import io.github.fourlastor.game.di.ScreenScoped;
 import io.github.fourlastor.game.level.Layer;
+import io.github.fourlastor.game.level.board.BoardSettings;
+import io.github.fourlastor.game.level.board.BoardToPositionSystem;
 import io.github.fourlastor.game.level.system.ClearScreenSystem;
 import io.github.fourlastor.harlequin.system.StageSystem;
 import java.lang.annotation.Retention;
@@ -21,11 +23,19 @@ public class LevelModule {
 
     @Provides
     @ScreenScoped
-    public Engine engine(StageSystem stageSystem, ClearScreenSystem clearScreenSystem) {
+    public Engine engine(
+            BoardToPositionSystem boardToPositionSystem, StageSystem stageSystem, ClearScreenSystem clearScreenSystem) {
         Engine engine = new Engine();
+        engine.addSystem(boardToPositionSystem);
         engine.addSystem(clearScreenSystem);
         engine.addSystem(stageSystem);
         return engine;
+    }
+
+    @Provides
+    @ScreenScoped
+    public BoardSettings boardSettings() {
+        return new BoardSettings();
     }
 
     @Provides
