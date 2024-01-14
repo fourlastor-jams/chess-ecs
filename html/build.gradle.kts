@@ -109,8 +109,6 @@ dependencies {
     sources(libs.jsinterop)
     sources(libs.gdx.core)
     sources(libs.gdx.ai)
-    sources(libs.gdx.box2d.core)
-    sources(libs.gdx.box2d.gwt)
     sources(libs.gdx.controllers.core)
     sources(libs.gdx.controllers.gwt)
     sources(libs.ashley)

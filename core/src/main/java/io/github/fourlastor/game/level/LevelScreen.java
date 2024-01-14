@@ -12,14 +12,11 @@ public class LevelScreen extends ScreenAdapter {
     private final Viewport viewport;
     private final EntitiesFactory entitiesFactory;
 
-    private final World world;
-
     @Inject
-    public LevelScreen(Engine engine, Viewport viewport, EntitiesFactory entitiesFactory, World world) {
+    public LevelScreen(Engine engine, Viewport viewport, EntitiesFactory entitiesFactory) {
         this.engine = engine;
         this.viewport = viewport;
         this.entitiesFactory = entitiesFactory;
-        this.world = world;
     }
 
     @Override
@@ -34,18 +31,12 @@ public class LevelScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        // entitiesFactory.create(...)
+        engine.addEntity(entitiesFactory.board());
     }
 
     @Override
     public void hide() {
         engine.removeAllEntities();
         engine.removeAllSystems();
-    }
-
-    @Override
-    public void dispose() {
-        super.dispose();
-        world.dispose();
     }
 }
